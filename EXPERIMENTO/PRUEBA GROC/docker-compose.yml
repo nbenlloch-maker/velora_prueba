@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  resume-evaluator:
+    build: .
+    image: resume-evaluator:latest
+    container_name: resume-evaluator
+    
+    # Variables de entorno desde archivo .env
+    env_file:
+      - .env
+    
+    # Montar directorio local para acceder a archivos
+    volumes:
+      - ./examples:/app/examples:ro  # Solo lectura
+      - ./data:/data:rw               # Lectura/escritura para tus archivos
+    
+    # Modo interactivo
+    stdin_open: true
+    tty: true
+    
+    # Comando por defecto (evaluar ejemplos)
+    command: ["--jd", "examples/job_description.txt", "--cv", "examples/cv.txt"]
+
+# Para ejecutar con tus propios archivos:
+# docker-compose run --rm resume-evaluator --jd /data/mi_trabajo.txt --cv /data/mi_cv.txt

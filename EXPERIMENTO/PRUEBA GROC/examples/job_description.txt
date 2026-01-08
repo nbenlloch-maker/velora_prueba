@@ -1,0 +1,4 @@
+- Experiencia mínima de 3 años en Python
+- Formación mínima requerida: Ingeniería/Grado en informática o Master en IA
+- Valorable conocimientos en FastAPI
+- Valorable conocimientos en LangChain
