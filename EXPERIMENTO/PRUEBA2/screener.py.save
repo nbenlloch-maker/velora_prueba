@@ -1,0 +1,36 @@
+import os
+from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import PydanticOutputParser
+from models import ScreeningResult
+
+load_dotenv()
+
+# Usamos gpt-4o (o gpt-3.5-turbo si prefieres ahorrar)
+llm = ChatOpenAI(model="gpt-4o", temperature=0)
+parser = PydanticOutputParser(pydantic_object=ScreeningResult)
+
+def analyze_cv(offer_text: str, cv_text: str):
+    system_prompt = """
+    Eres un experto reclutador de TI con IA llamado 'VeloraBot'.
+    Tu tarea es evaluar un CV contra una Oferta de Trabajo.
+    
+    REGLAS DE PUNTUACIÓN:
+    1. Identifica todos los requisitos de la oferta.
+    2. Compara con el CV.
+    3. Score = (Requisitos Cumplidos / Total Requisitos) * 100.
+    4. SI FALTA UN REQUISITO OBLIGATORIO: Score = 0 y discarded = True.
+    5. Si falta un opcional: No descartar, pero no suma puntos.
+    
+    Responde ESTRICTAMENTE en este formato JSON:
+    {format_instructions}
+    """
+
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", system_prompt),
+        ("user", "OFERTA:\n{offer}\n\nCV:\n{cv}")
+    ])
+
+    messages = prompt.format_messages(
+   
