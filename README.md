@@ -1,4 +1,9 @@
-#  Velora: Experimento de Reclutamiento Inteligente
+Aquí tienes el archivo `README.md` completo y definitivo, con la estructura profesional, la historia de los modelos (OpenAI vs DeepSeek vs Groq) y el ejercicio propuesto al final.
+
+Solo tienes que **copiar el bloque de código de abajo** y pegarlo en tu archivo `README.md`.
+
+```markdown
+# 🚀 Velora: Experimento de Reclutamiento Inteligente
 
 ¡Hola! 👋 Bienvenido al repositorio de mi proyecto **Velora**.
 
@@ -6,114 +11,112 @@ Este proyecto nace de mi curiosidad personal. Aunque en el máster todavía no h
 
 ---
 
-##  ¿Por qué hice esto? (El Problema)
+## 🎯 ¿Por qué hice esto? (El Problema)
 
-En mi primer intento, me di cuenta de que la IA funcionaba como un filtro de palabras clave : si el CV no decía explícitamente "Python", descartaba al candidato.
+En mi primer intento, me di cuenta de que la IA funcionaba como un filtro de palabras clave tradicional: si el CV no decía explícitamente "Python", descartaba al candidato.
 
 Pensé: *"Un reclutador humano no descarta; si tiene dudas... pregunta"*.
 Así que mi objetivo fue replicar ese comportamiento humano usando código: **Si la IA no encuentra un dato, no asume que no existe, sino que le pregunta al usuario.**
 
 ---
 
-##  ¿Cómo funciona? (Lo que he construido)
+## 🧠 Evolución del Proyecto: La elección del Modelo
 
-He dividido el código en piezas pequeñas para no liarme (modularidad). Así es como fluye la lógica:
+Para lograr que esto funcionara, pasé por **tres fases de experimentación con distintos modelos**, enfrentándome a barreras técnicas y económicas:
+
+1.  **Intento 1: OpenAI (GPT-4)** ❌
+    * Fue mi primera opción por ser el estándar.
+    * **Problema:** Me encontré con barreras de entrada (requerimiento de tarjetas de crédito y *tiers* de pago para la API) que dificultaban el desarrollo fluido para un proyecto de estudiantes. No me dejaba continuar sin configurar la facturación.
+
+2.  **Intento 2: DeepSeek** ⚠️
+    * Probé este modelo buscando una alternativa potente y más accesible.
+    * **Resultado:** Aunque prometedor, la integración no fue tan inmediata para el flujo de conversación que yo necesitaba en este prototipo específico.
+
+3.  **Intento 3: Groq (La Solución Final)** ✅
+    * Finalmente, opté por **Groq**.
+    * **Resultado:** Es la que me ha funcionado a la perfección. Ofrece una velocidad de inferencia increíble (necesaria para que la entrevista no se sienta lenta) y su integración ha sido la más estable y sin problemas de bloqueos por pago durante las pruebas.
+
+---
+
+## ⚙️ ¿Cómo funciona? (Arquitectura)
+
+He dividido el código en piezas pequeñas para mantener la modularidad. Así fluye la lógica:
 
 ### 1. El Cerebro (`screener.py` y `models.py`)
-Investigando, descubrí que pedirle texto libre a ChatGPT es un caos para programar.
+Investigando, descubrí que pedirle texto libre a un LLM es un caos para programar posteriormente.
 * **Lo que aprendí:** Usé una librería llamada `Pydantic` para obligar a la IA a devolverme los datos ordenados (en formato JSON estricto).
 * **La lógica:** Ahora la IA clasifica los requisitos en tres tipos:
     * ✅ **Matching:** Lo tienes.
     * ❌ **Unmatching:** Dices explícitamente que no lo tienes.
-    * ❓ **Not Found:** No aparece en el CV (aquí está la clave).
+    * ❓ **Not Found:** No aparece en el CV (aquí está la clave del proyecto).
 
 ### 2. El Entrevistador (`interviewer.py`)
-Si la IA detecta requisitos "Not Found", no te baja la nota.
+Si la IA detecta requisitos "Not Found", no te baja la nota inmediatamente.
 * Se inicia un chat automático.
-* La IA te pregunta: *"Oye, no vi FastAPI en tu CV, ¿sabes usarlo?"*.
-* **El Juez:** Lo más interesante es que no busco un "Sí" o un "No" simple. He programado una segunda llamada a la IA que lee tu respuesta y evalúa si realmente sabes del tema o no.
+* La IA pregunta: *"Oye, no vi FastAPI en tu CV, ¿sabes usarlo?"*.
+* **El Juez:** Lo más interesante es que no busco un "Sí" o un "No" simple. He programado una segunda llamada a la IA que lee tu respuesta y evalúa semánticamente si realmente sabes del tema.
 
 ---
 
-##  Tecnologías que he explorado
+## 🛠 Tecnologías que he explorado
 
 Como comentaba, muchas de estas cosas no las hemos dado aún en clase, así que he tenido que leer documentación y probar por mi cuenta:
 
-* **Python:** Para unirlo todo.
-* **LangChain:** Me ha servido para conectar el código con OpenAI/Deepseek de forma más fácil.
-* **OpenAI (GPT-4o):** El modelo que uso para razonar.
-* **Pydantic:** Para definir la estructura de los datos (esto me ha parecido súper útil para evitar errores).
+* **Python:** El lenguaje base.
+* **LangChain:** Para orquestar la conexión entre mi código y los modelos de IA.
+* **Groq API:** El motor de inteligencia elegido por su velocidad y fiabilidad.
+* **Pydantic:** Para definir la estructura de datos y validación (crucial para evitar errores de parseo).
 
 ---
 
-##  Ejemplo de funcionamiento
+## 📝 Ejemplo de funcionamiento
 
 1.  **Entrada:** Subo una oferta que pide "Python y Docker".
 2.  **Análisis:** Mi CV solo dice "Python".
-3.  **Acción:** En lugar de ponerme un 50% de nota, el sistema detecta que falta "Docker".
+3.  **Acción:** En lugar de ponerme un 50% de nota, el sistema detecta que falta "Docker" (Not Found).
 4.  **Entrevista:** Me pregunta por Docker. Yo respondo: "Sí, lo uso para desplegar contenedores".
 5.  **Resultado:** La IA valida mi respuesta y me recalcula la nota al 100%.
 
 ---
 
-##  Cómo probarlo
+## 🚀 Cómo probarlo
 
-He creado un archivo `main.py` para que sea fácil de ejecutar:
+He creado un archivo `main.py` para facilitar la ejecución:
 
-1.  Instalar lo necesario:
+1.  Instalar dependencias:
     ```bash
     pip install -r requirements.txt
     ```
-2.  Poner la clave de OpenAI en un archivo `.env`.
+2.  Configurar la API Key (necesitarás una de Groq, que es gratuita):
+    * Crea un archivo llamado `.env` en la misma carpeta.
+    * Añade dentro esta línea: `GROQ_API_KEY=tu_clave_aqui`
 3.  Ejecutar:
     ```bash
     python main.py
     ```
-<img width="464" height="198" alt="Captura Terminal  Velora" src="https://github.com/user-attachments/assets/31788f33-9b94-4af3-b61e-2e6f2d9f6d18" />
+
+<img width="464" height="198" alt="Captura Terminal Velora" src="https://github.com/user-attachments/assets/31788f33-9b94-4af3-b61e-2e6f2d9f6d18" />
 
 ---
-## Ejercicio propuesto:
 
-Especificaciones
-Este sistema recibirá el sistema recibirá los requisitos de la oferta (cada requisito puede ser
-mínimos/obligatorios o deseables/opcionales) y el CV completo del candidato (ambos en texto,
-puede ser leyendo un .txt o como se prefiera).
-El sistema debe identificar cuáles de los requisitos de la oferta cumple el CV aportado. Todos
-los requisitos puntúan lo mismo sobre un total de 100% (por simplificar la prueba), es decir si se
-piden 5 requisitos y se cumplen 4, se obtiene un 80%. Pero si uno de los requisitos obligatorios
-(indicado en la oferta), no se cumple, la puntuación debe ser 0%, ya que el candidato está
-descartado. Si un requisito de la oferta no aparece en el CV, cuenta como no cumplido pero no
-descarta nunca.
-Ejemplo de una oferta con requisito de experiencia obligatorio y certificación en AWS opcional:
+## 📋 Ejercicio propuesto (Base del proyecto)
 
-- Experiencia mínima de 3 años en Python
-- Valorable certificación de DevOps en AWS
-Este primer paso del sistema, deberá devolver la puntuación del CV sobre la oferta, un listado
-de los requisito que ha complicado y de los que no ha cumplido, un flag indicando si ha sido descartado por un requisito obligatorio o no y una lista de “requisitos” de la oferta no encontrados en el CV.
-El segundo paso del sistema es tomar esta salida, y si el candidato no ha sido descartado debe
-establecer una conversación con el candidato para preguntar sobre los requisitos no
-encontrados en la oferta. El sistema debe recopilar la información faltante y cuando la tenga,
-volver a evaluar al candidato con el fin de actualizar la puntuación con las respuesta obtenidas.
-Ejemplo completo:
-Requisitos de la oferta:
-- Experiencia mínima de 3 años en Python
-- Formación mínima requerida: Ingeniería/Grado en informática o Master en IA
-- Valorable conocimientos en FastAPI y LangChain
-CV (versión resumida para el ejemplo):
-Experiencia:
-Desarrollador de IA Generativa - EMPRESA A (Abril 2023 - Actualidad)
-Encargado de desarrollar sistemas de IA generativa en Python, diseñando prompts eficientes y
-sistemas escalables
-Data Science / LLM - EMPRESA B (Enero 2022 - Abril 2023)
-Analista de datos para el entrenamiento de modelos LLM. Entre mis funciones reentrenamiento
-y validación con prompt diseñados para validar su correcto funcionamiento
+Este proyecto soluciona el siguiente enunciado técnico:
 
-Con esta información el sistema debe iniciar una conversación (puede ser directamente en la
-terminal, o con alguna interfaz UI sencilla generada con el software que desee).
-En esa conversación un asistente/agente debe saludar al candidato y preguntar por los
-requisitos no encontrados. En este ejemplo debe preguntar si tiene experiencia en FastAPI y
-después si tiene experiencia en LangChain.
-Supongamos que el candidato contesta que sí tiene experiencia en FastAPI pero no en
-LangChain. El sistema debe recalcular la puntuación con esta nueva información y responder
-que la puntuación final es de 75% (los 2 requisitos detectados en el CV + 1 en la conversación,
-son 3 sobre 4)
+**Especificaciones:**
+El sistema debe recibir los requisitos de la oferta (mínimos/obligatorios o deseables/opcionales) y el CV del candidato. Debe identificar qué requisitos se cumplen.
+
+* **Puntuación:** Todos los requisitos puntúan igual sobre 100%.
+* **Regla de Oro:** Si falla un requisito obligatorio, la puntuación es 0% (Descartado).
+* **Dudas:** Si un requisito no aparece, cuenta como no cumplido pero no descarta.
+
+**Ejemplo de Oferta:**
+* Experiencia mínima de 3 años en Python (Obligatorio)
+* Valorable certificación de DevOps en AWS (Opcional)
+
+**Flujo:**
+1.  **Fase 1:** Devolver puntuación inicial, listas de requisitos cumplidos/no cumplidos/no encontrados y flag de descartado.
+2.  **Fase 2:** Si no está descartado, iniciar conversación preguntando por los requisitos "no encontrados".
+3.  **Recálculo:** Si el candidato responde positivamente (ej: confirma experiencia en FastAPI), recalcular la nota final (ej: subir de 50% a 75%).
+
+```
