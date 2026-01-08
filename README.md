@@ -69,6 +69,7 @@ He creado un archivo `main.py` para que sea fácil de ejecutar:
     ```bash
     python main.py
     ```
+<img width="464" height="198" alt="Captura Terminal  Velora" src="https://github.com/user-attachments/assets/31788f33-9b94-4af3-b61e-2e6f2d9f6d18" />
 
 ---
 ## Ejercicio propuesto:
