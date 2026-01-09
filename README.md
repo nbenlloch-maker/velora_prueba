@@ -2,16 +2,7 @@
 
 ¡Hola! 👋 Bienvenido al repositorio de mi proyecto **Velora**.
 
-Este proyecto nace de mi curiosidad personal. Aunque en el máster todavía no hemos profundizado en la integración compleja de LLMs (Modelos de Lenguaje) con código, quise adelantarme e investigar por mi cuenta cómo construir una herramienta que no solo "lea" texto, sino que **tome decisiones y entreviste candidatos**.
-
----
-
-## 🎯 ¿Por qué hice esto? (El Problema)
-
-En mi primer intento, me di cuenta de que la IA funcionaba como un filtro de palabras clave tradicional: si el CV no decía explícitamente "Python", descartaba al candidato.
-
-Pensé: *"Un reclutador humano no descarta; si tiene dudas... pregunta"*.
-Así que mi objetivo fue replicar ese comportamiento humano usando código: **Si la IA no encuentra un dato, no asume que no existe, sino que le pregunta al usuario.**
+Este proyecto nace de mi curiosidad personal. Aunque en el máster todavía no hemos profundizado en la integración compleja de LLMs (Modelos de Lenguaje) con código y la IA generativa, por qué no adelantarme e investigar por mi cuenta cómo construir una herramienta que no solo "lea" texto, sino que **tome decisiones y entreviste candidatos**.
 
 ---
 
@@ -19,15 +10,15 @@ Así que mi objetivo fue replicar ese comportamiento humano usando código: **Si
 
 Para lograr que esto funcionara, pasé por **tres fases de experimentación con distintos modelos**, enfrentándome a barreras técnicas y económicas:
 
-1.  **Intento 1: OpenAI (GPT-4)** ❌
+1.  **Intento 1: OpenAI (GPT-4)** 
     * Fue mi primera opción por ser el estándar.
     * **Problema:** Me encontré con barreras de entrada (requerimiento de tarjetas de crédito y *tiers* de pago para la API) que dificultaban el desarrollo fluido para un proyecto de estudiantes. No me dejaba continuar sin configurar la facturación.
 
-2.  **Intento 2: DeepSeek** ⚠️
+2.  **Intento 2: DeepSeek** 
     * Probé este modelo buscando una alternativa potente y más accesible.
     * **Resultado:** Aunque prometedor, la integración no fue tan inmediata para el flujo de conversación que yo necesitaba en este prototipo específico.
 
-3.  **Intento 3: Groq (La Solución Final)** ✅
+3.  **Intento 3: Groq** 
     * Finalmente, opté por **Groq**.
     * **Resultado:** Es la que me ha funcionado a la perfección. Ofrece una velocidad de inferencia increíble (necesaria para que la entrevista no se sienta lenta) y su integración ha sido la más estable y sin problemas de bloqueos por pago durante las pruebas.
     
@@ -75,21 +66,6 @@ Como comentaba, muchas de estas cosas no las hemos dado aún en clase, así que 
 
 ---
 
-## 🚀 Cómo probarlo
-
-He creado un archivo `main.py` para facilitar la ejecución:
-
-1.  Instalar dependencias:
-    ```bash
-    pip install -r requirements.txt
-    ```
-2.  Configurar la API Key (necesitarás una de Groq, que es gratuita):
-    * Crea un archivo llamado `.env` en la misma carpeta.
-    * Añade dentro esta línea: `GROQ_API_KEY=tu_clave_aqui`
-3.  Ejecutar:
-    ```bash
-    python main.py
-    ```
 
 <img width="464" height="198" alt="Captura Terminal Velora" src="https://github.com/user-attachments/assets/31788f33-9b94-4af3-b61e-2e6f2d9f6d18" />
 
