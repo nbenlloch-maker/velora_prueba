@@ -4,6 +4,8 @@
 
 Este proyecto nace de mi curiosidad personal. Aunque en el máster todavía no hemos profundizado en la integración compleja de LLMs (Modelos de Lenguaje) con código y la IA generativa, por qué no adelantarme e investigar por mi cuenta cómo construir una herramienta que no solo "lea" texto, sino que **tome decisiones y entreviste candidatos**.
 
+La verdad es que me lo he pasado genial haciéndolo. La idea que tenía al entrar al máster era justo esta: poder vincular mi formación base de Relaciones Laborales y Recursos Humanos con la IA, así que ha sido la excusa perfecta y me encantaría poder seguir aprendiendo de estos modelos y tecnologías.
+
 ---
 
 ## 🧠 Evolución del Proyecto: La elección del Modelo
