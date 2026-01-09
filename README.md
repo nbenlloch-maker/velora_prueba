@@ -1,9 +1,4 @@
-Aquí tienes el archivo `README.md` completo y definitivo, con la estructura profesional, la historia de los modelos (OpenAI vs DeepSeek vs Groq) y el ejercicio propuesto al final.
 
-Solo tienes que **copiar el bloque de código de abajo** y pegarlo en tu archivo `README.md`.
-
-```markdown
-# 🚀 Velora: Experimento de Reclutamiento Inteligente
 
 ¡Hola! 👋 Bienvenido al repositorio de mi proyecto **Velora**.
 
@@ -35,7 +30,8 @@ Para lograr que esto funcionara, pasé por **tres fases de experimentación con 
 3.  **Intento 3: Groq (La Solución Final)** ✅
     * Finalmente, opté por **Groq**.
     * **Resultado:** Es la que me ha funcionado a la perfección. Ofrece una velocidad de inferencia increíble (necesaria para que la entrevista no se sienta lenta) y su integración ha sido la más estable y sin problemas de bloqueos por pago durante las pruebas.
-
+    
+De todas formas, adjunto los 3 modelos para que se les eche un ojo yse vea el procedimiento a seguir por ver si iba bien encaminado o no.
 ---
 
 ## ⚙️ ¿Cómo funciona? (Arquitectura)
