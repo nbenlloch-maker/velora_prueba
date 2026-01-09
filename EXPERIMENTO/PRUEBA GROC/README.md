@@ -37,8 +37,15 @@ docker-compose build
 ```powershell
 docker-compose run --rm resume-evaluator
 ```
+# 1. Construir (primera vez, 2-3 minutos)
+docker-compose build
 
-**Ver DOCKER.md para guía completa.**
+# 2. Probar con ejemplos
+docker-compose run --rm resume-evaluator
+
+# 3. Con tus archivos (cópialos a data/ primero)
+docker-compose run --rm resume-evaluator --jd /data/trabajo.txt --cv /data/cv.txt
+
 
 ¡Listo! 🎉
 
